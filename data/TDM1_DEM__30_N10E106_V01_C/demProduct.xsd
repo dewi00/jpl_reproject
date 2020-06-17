@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- CHANGE HISTORY 
+date - author: changes
+Version 1.1
+24.04.2013 - M. Huber: initial version
+Version 2.0
+18.09.2013 - M. Huber: coverageCompleteness changed to coverageCompletenessInfo
+Version 2.1
+19.11.2013 - M. Huber: added optional parameters diffToIcesat90Percent and diffToSrtm90Percent
+Version 2.2
+23.04.2014 - D. Schulze, M.Huber: 
+  - added types for elements and attributes without types
+  - changed elements "startTime", "stopTime", "acquisitionStartTime" from xs:string to xs:datetime
+  - set required attributes to "required"
+  - changed xs:NMTOKEN type with enumeration to xs:string
+  - removed attribute "unit" from element "numberValidationPointsIcesat"
+  - updated documentation of "coverageCompletenessInfo", "coveragePotentialLand", "coveragePotentialWater", "bestResolutionOnGround" and "productQuality"
+  - corrected some typing errors
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.2">
+	<xs:include schemaLocation="generalHeader.xsd"/>
+	<xs:element name="demProduct">
+		<xs:annotation>
+			<xs:documentation>This XML file contains the meta data of DEMs processed by the TanDEM-X mission</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="generalHeader"/>
+				<xs:element name="productComponents">
+					<xs:annotation>
+						<xs:documentation>Lists and points to the product components.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="annotation">
+								<xs:annotation>
+									<xs:documentation>Lists and points to the annotation components.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="componentName">
+											<xs:annotation>
+												<xs:documentation>Name of this component, i.e. ANNOTATION</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="ANNOTATION"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="componentDescription" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Description of this component, e.g. files providing annotation data</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="anoFile" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Pointer to the annotation file(s). Further annotation files may be added.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name">
+														<xs:annotation>
+															<xs:documentation>name identifying file content (i.e. this file = MAIN). Size is -1 for type MAIN which points to itself.</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="MAIN"/>
+																<xs:enumeration value="HTML"/>
+																<xs:enumeration value="OTHER"/>
+																<xs:enumeration value="UNDEFINED"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="description" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Description of this annotation file, e.g. product main annotation</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="file">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="location"/>
+																<xs:element name="imageDataFormat" type="xs:string">
+																	<xs:annotation>
+																		<xs:documentation>Data file format (i.e. this file = XML)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="size" type="xs:long"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="dem">
+								<xs:annotation>
+									<xs:documentation>Lists and points to the DEM product component.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="componentName">
+											<xs:annotation>
+												<xs:documentation>Name of this component, i.e. DEM</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="DEM"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="componentDescription" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Description of this component, e.g. layer providing elevation data</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="demFile">
+											<xs:annotation>
+												<xs:documentation>Pointer to the elevation data file.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Mnemonic identifying file content (i.e. this file = DEM)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="description" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Description of this file, e.g. digital elevation model</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element ref="file"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="auxiliary">
+								<xs:annotation>
+									<xs:documentation>Lists and points to the auxiliary product components.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="componentName" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Name of this component, i.e. AUXILIARY</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="componentDescription" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Description of this component, e.g. layers providing auxiliary data</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="auxFile" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Pointer to the auxiliary file(s).</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Mnemonic identifying file content (e.g. HEM, AMP, ...)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="description" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Description of this file (e.g. height error map)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element ref="file"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="preview">
+								<xs:annotation>
+									<xs:documentation>Lists and points to the preview product components.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="componentName" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Name of this component, i.e. PREVIEW</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="componentDescription" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Description of this component, e.g. quicklooks of provided dataset</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="previewFile" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Pointer to the preview file(s).</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Mnemonic identifying file content (e.g. HEM_QL, AMP_QL, ...)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="description">
+														<xs:annotation>
+															<xs:documentation>Description of this file (e.g. quicklook of layer HEM)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="file" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Pointer to the preview file(s) of same data layer.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="location">
+																	<xs:annotation>
+																		<xs:documentation>Location of product components</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="imageDataFormat" type="xs:string">
+																	<xs:annotation>
+																		<xs:documentation>Data file format (e.g. JPEG, GeoTIFF, KML, ...)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="size" type="xs:unsignedInt">
+																	<xs:annotation>
+																		<xs:documentation>File size in bytes</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="productInfo">
+					<xs:annotation>
+						<xs:documentation>General mission, acquisition and product variant related parameters. Basic information on the product content.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="generationInfo">
+								<xs:annotation>
+									<xs:documentation>Key parameters of the product generation and delivery</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="demTileIdentifier" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Tile identifier</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="demTileVersion" type="xs:unsignedInt">
+											<xs:annotation>
+												<xs:documentation>Tile version</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="demTileStatus" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Tile status, e.g. PRELIMINARY, COMPLETED, ...</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="generator" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Generator of the product</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="generationFacility" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Generation facility of the product</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="copyrightInfo" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>General copyright remark</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="missionInfo">
+								<xs:annotation>
+									<xs:documentation>Mission and satellite parameters</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="mission" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>TDM1, indicating the TanDEM-X mission</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="satellite" maxOccurs="2">
+											<xs:annotation>
+												<xs:documentation>satellite(s) contributing to the product </xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="num" type="xs:unsignedInt" use="required">
+															<xs:annotation>
+																<xs:documentation>Consecutive number, e.g. 1, 2, 3, ...</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="acquisitionInfo">
+								<xs:annotation>
+									<xs:documentation>SAR sensor configuration and instrument modes during acquisition</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="sensor" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Sensor identifier: SAR</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="cooperativeMode" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>System operating mode, e.g. bistatic, ...</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="imagingMode" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>imaging mode(s) of contributing acquisitions, e.g. SM, SL, HS, SC, UNDEFINED</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lookDirection" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>look direction(s) of contributing acquisitions: left, right, both</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="orbitDirection" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Orbit direction(s) of contributing acquisitions: ascending, descending, mixed</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="polarisationMode" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>polarisation mode, e.g. single, ...</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="polarisation" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>polarisation, e.g. HH, VV, ...</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="productVariantInfo">
+								<xs:annotation>
+									<xs:documentation>Product variant description</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="productType" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Product type, i.e. DEM</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="productVariant" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Product variant, e.g. DEM, IDEM, FDEM, HDEM</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="resolutionVariant" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Product resolution variant, e.g. 04 (= 0.4 arcsec), 10 (= 1.0 arcsec), 30 (= 3.0 arcsec)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="spatialCoverage">
+								<xs:annotation>
+									<xs:documentation>Spatial coverage description</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="boundingBox">
+											<xs:annotation>
+												<xs:documentation>Geographical coordinates of bounding box (referring to pixel center)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="westBoundingCoordinate" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="southBoundingCoordinate" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="eastBoundingCoordinate" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="northBoundingCoordinate" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="frameCoordsGeographic">
+											<xs:annotation>
+												<xs:documentation>Geographical coordinates of frame, i.e. of covered area</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="upperLeftLongitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="upperLeftLatitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="upperRightLongitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="upperRightLatitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lowerRightLongitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lowerRightLatitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lowerLeftLongitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lowerLeftLatitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="centerCoordsGeographic">
+											<xs:annotation>
+												<xs:documentation>Geographical coordinates of product center</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="centerCoordLongitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="centerCoordLatitude" type="xs:float">
+														<xs:annotation>
+															<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="altitudeCoverage">
+								<xs:annotation>
+									<xs:documentation>Altitude coverage description</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="minimalTerrainHeight">
+											<xs:annotation>
+												<xs:documentation>Minimum height</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>meter [m]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="m"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="averageTerrainHeight">
+											<xs:annotation>
+												<xs:documentation>Mean height</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>meter [m]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="m"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="maximalTerrainHeight">
+											<xs:annotation>
+												<xs:documentation>Maximum height</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>meter [m]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="m"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="heightRange">
+											<xs:annotation>
+												<xs:documentation>Height range</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>meter [m]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="m"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="temporalCoverage">
+								<xs:annotation>
+									<xs:documentation>Temporal coverage description</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="startTime" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Start time of first acquisition</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="stopTime" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Stop time of last acquisition</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="coverageCompletenessInfo">
+								<xs:annotation>
+									<xs:documentation>Coverage completeness statistics. Statistics are based on best resolution variant, e.g. 0.4 arcsec</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="coverageCompleteness">
+											<xs:annotation>
+												<xs:documentation>Percentage of valid DEM pixel</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>percentage [%]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="percentage"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="coveragePotentialLand">
+											<xs:annotation>
+												<xs:documentation>Percentage of potential land pixel (w.r.t. all valids), based on coherence and amplitude thresholds</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>percentage [%]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="percentage"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="coveragePotentialWater">
+											<xs:annotation>
+												<xs:documentation>Percentage of potential water pixel (w.r.t. all valids), based on coherence and amplitude thresholds</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>percentage [%]</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="percentage"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="demLayerInfo">
+					<xs:annotation>
+						<xs:documentation>Specific information of DEM product.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="imageDataInfo" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="auxiliaryLayerInfo">
+					<xs:annotation>
+						<xs:documentation>Specific information of auxiliary products.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="imageDataInfo" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="processing">
+					<xs:annotation>
+						<xs:documentation>Processor and product configuration parameters and parameters of the data determined during processing.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="processingRevision" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the high level software revision with which the product was generated</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="processingVersionCalOldest" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the oldest version of calibration software contributing to the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="processingVersionCalLatest" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the latest version of calibration software contributing to the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="processingVersionMosOldest" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the oldest version of mosaicking software contributing to the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="processingVersionMosLatest" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the latest version of mosaicking software contributing to the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="processingVersionArch" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Specifies the version of archiving software.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="numberOfUsedAcquisitions" type="xs:unsignedInt">
+								<xs:annotation>
+									<xs:documentation>Total number of acquisitions used to generate the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="numberOfUsedScenes" type="xs:unsignedInt">
+								<xs:annotation>
+									<xs:documentation>Total number of scenes used to generate the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="minNumberCoverages" type="xs:unsignedInt">
+								<xs:annotation>
+									<xs:documentation>Minimum number of acquisitions used to generate a height value.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="maxNumberCoverages" type="xs:unsignedInt">
+								<xs:annotation>
+									<xs:documentation>Maximum number of acquisitions used to generate a height value.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cartographicParameters">
+								<xs:annotation>
+									<xs:documentation>Specifies the cartographic parameters, e.g. reference datum.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="horizontalDatumCode" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Horizontal datum, i.e. WGS84  in its newest realisation WGS84-G1150.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="verticalDatumCode" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Vertical datum, i.e. WGS84  in its newest realisation WGS84-G1150.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="coordinateSystem" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>GEOGRAPHIC, i.e. all values are mapped in geographic coordinates.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="processingParameter">
+								<xs:annotation>
+									<xs:documentation>Parameters derived from and applied to processing.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="bestResolutionOnGround">
+											<xs:annotation>
+												<xs:documentation>Best resolution of input RawDEMs on ground in meter.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:float">
+														<xs:attribute name="units" use="required">
+															<xs:annotation>
+																<xs:documentation>meter</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="m"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="phaseInformationIncluded" type="xs:boolean">
+											<xs:annotation>
+												<xs:documentation>Interferometric phase information included in the product (false)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="accessRegion" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Flag to identify certain regions, e.g. GLOBAL, POLAR, ...</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="onTopMosaic" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Acquisition(s) were added to a prior version of the product, e.g. additional acquisition(s) were mosaicked on top.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="demInterpolationMethod" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Interpolation method applied to single spikes and wells.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sourceScenes">
+					<xs:annotation>
+						<xs:documentation>Specific information of acquisition(s) used to generate the product.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="acquisition" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Description of source acquisition</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="productQuality">
+					<xs:annotation>
+						<xs:documentation>Summarizes the image and data quality. Statistics are based on best resolution variant, e.g. 0.4 arcsec</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="qualityInspection" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>MCP processor internal quality control result, e.g. APPROVED, LIMITED_APPROVAL, ...</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="qualityRemark" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>MCP processor quality remark, e.g. NONE, small_PU_error, ...</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="availabilityOfSrtm" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation>Srtm available for validation (true/false)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="diffToSrtmMean" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Mean difference to SRTM C-Band DEM</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="diffToSrtmStd" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Standard deviation of difference to SRTM C-Band DEM</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="diffToSrtm90Percent" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>90 Percent of differences to SRTM C-Band DEM are within this value</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="availabilityOfIcesat" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation>ICESat validation points available (true/false)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="diffToIcesatMean" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Mean difference to ICESat validation points</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="diffToIcesatStd" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Standard deviation of difference to ICESat validation points</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="diffToIcesat90Percent" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>90 Percent of differences to ICESat validation points are within this value</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:annotation>
+													<xs:documentation>meter</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="m"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="numberValidationPointsIcesat" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Number of ICESat validation points</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:unsignedInt"/>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- reference nodes: -->
+	<xs:element name="acquisition">
+		<xs:annotation>
+			<xs:documentation>description of source scene(s)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="acquisitionItemId" type="xs:unsignedInt">
+					<xs:annotation>
+						<xs:documentation>ID of acqusition, e.g. 1023456</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="beamId" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Beam ID, e.g. tanDEM_a1_070</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orbitDirection" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Orbit direction, i.e. ascending, descending</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orbitNumber" type="xs:unsignedInt">
+					<xs:annotation>
+						<xs:documentation>Number of absolute orbit</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="sceneList">
+					<xs:annotation>
+						<xs:documentation>RawDEM number within the acquisition</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="sceneIndex" type="xs:unsignedInt" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rawDEMList">
+					<xs:annotation>
+						<xs:documentation>RawDEM Identifier: "acquisitionItemId"_"scene number"_"software revision", e.g. 1023456_03_OP_ITP_01</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="rawDEMId" type="xs:string" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="acquisitionStartTimeList">
+					<xs:annotation>
+						<xs:documentation>RawDEM start time</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="acquisitionStartTime" type="xs:dateTime" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="incidenceAngleCenterList">
+					<xs:annotation>
+						<xs:documentation>RawDEM incidence angle at scene center in degrees</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="incidenceAngleCenter" type="xs:float" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="heightOfAmbiguityList">
+					<xs:annotation>
+						<xs:documentation>RawDEM height of ambiguity</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="heightOfAmbiguity" type="xs:float" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="phaseUnwrappingTypeList">
+					<xs:annotation>
+						<xs:documentation>RawDEM phase unwrapping type</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="phaseUnwrappingType" type="xs:string" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sceneCornerCoordList">
+					<xs:annotation>
+						<xs:documentation>RawDEM scene corner coordinates</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="sceneCornerCoord" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="upperLeftLongitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="upperLeftLatitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="upperRightLongitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="upperRightLatitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lowerRightLongitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lowerRightLatitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lowerLeftLongitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical longitude positive towards east in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lowerLeftLatitude" type="xs:float">
+											<xs:annotation>
+												<xs:documentation>Geographical latitude positive towards north in degrees</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="scene" type="xs:unsignedInt" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:unsignedInt" use="required">
+				<xs:annotation>
+					<xs:documentation>Consecutive number of acquisitions, i.e. 1, 2, 3 , ...</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="imageDataInfo">
+		<xs:annotation>
+			<xs:documentation>Description of data layer(s)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pixelValueID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Text describing layer content (e.g. HEIGHT, RADAR_AMPLITUDE_MEAN, ...)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataFormat" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Data file format (e.g. GeoTIFF)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataType" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Data file type (e.g. BYTE, UNSIGNED_INTEGER, FLOAT)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataDepth">
+					<xs:annotation>
+						<xs:documentation>Data file depth in bits (e.g. 8, 16, 32) </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:unsignedInt">
+								<xs:attribute name="units" use="required">
+									<xs:annotation>
+										<xs:documentation>bits per unit</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="bit"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="numberOfLayers" type="xs:unsignedInt">
+					<xs:annotation>
+						<xs:documentation>Layers contained in the data file, i.e. 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageStorageOrder" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Row by row</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="valueInvalidPixel" type="xs:float">
+					<xs:annotation>
+						<xs:documentation>Invalid value, e.g. -32767, 0, ...</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="rowContent" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>LATITUDE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="columnContent" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>LONGITUDE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageRaster">
+					<xs:annotation>
+						<xs:documentation>Size and spacing of image layer</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="numberOfRows" type="xs:unsignedInt"/>
+							<xs:element name="numberOfColumns" type="xs:unsignedInt"/>
+							<xs:element name="rowSpacing">
+								<xs:annotation>
+									<xs:documentation>Row spacing in arcsec</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="arcsec"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="columnSpacing">
+								<xs:annotation>
+									<xs:documentation>Column spacing in arcsec</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:float">
+											<xs:attribute name="units" use="required">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="arcsec"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="imageDataStatistics">
+					<xs:annotation>
+						<xs:documentation>Statistics of image layer</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="numberOfInvalidPixels" type="xs:unsignedLong"/>
+							<xs:element name="min" type="xs:float"/>
+							<xs:element name="max" type="xs:float"/>
+							<xs:element name="mean" type="xs:float"/>
+							<xs:element name="stdDev" type="xs:float">
+								<xs:annotation>
+									<xs:documentation>Standard deviation</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Mnemonic identifying layer content (e.g. DEM, HEM, AMP, ...)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="file">
+		<xs:annotation>
+			<xs:documentation>Pointer to product component</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="location">
+					<xs:annotation>
+						<xs:documentation>Location of product component</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataFormat" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Data file format (e.g. GeoTIFF)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataType" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Data file type (e.g. BYTE, UNSIGNED_INTEGER, FLOAT)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="imageDataDepth" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Data file depth in bits (e.g. 8, 16, 32) </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="size" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>File size in bytes</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="location">
+		<xs:annotation>
+			<xs:documentation>Location of product components</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="host" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Host defaults to: . </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="path" type="xs:string"/>
+				<xs:element name="filename" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

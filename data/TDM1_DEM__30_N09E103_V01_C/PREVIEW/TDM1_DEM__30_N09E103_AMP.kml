@@ -1,0 +1,25 @@
+<!-- ?xml version="1.0" encoding="UTF-8"? -->
+<kml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Folder>
+  <GroundOverlay>
+    <name>AMP for tile N09/E103</name>
+    <Icon>
+      <href>TDM1_DEM__30_N09E103_AMP_QL.tif</href>
+      <viewBoundScale>0.75</viewBoundScale>
+    </Icon>
+    <LatLonBox>
+      <north>10.000417</north>
+      <south>9.000417</south>
+      <east>103.999583</east>
+      <west>102.999583</west>
+      <rotation>0.0</rotation>
+    </LatLonBox>
+    <Lod>
+      <minLodPixels>128</minLodPixels> 
+      <maxLodPixels>1024</maxLodPixels> 
+      <minFadeExtent>128</minFadeExtent>
+      <maxFadeExtent>512</maxFadeExtent>
+    </Lod>
+  </GroundOverlay>
+</Folder>
+</kml>

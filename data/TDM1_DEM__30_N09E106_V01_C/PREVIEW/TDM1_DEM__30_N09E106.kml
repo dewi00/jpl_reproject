@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Folder>
+<name>TDM1_DEM__30_N09E106</name>
+<open>1</open>
+<Document><name>First acquisition</name>
+<StyleMap id="msn_red-polyline">
+<Pair><key>normal</key><styleUrl>#sn_red-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_red-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_red-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff0000ff</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_red-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff0000ff</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<StyleMap id="msn_gray-polyline">
+<Pair><key>normal</key><styleUrl>#sn_gray-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_gray-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_gray-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_gray-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Placemark><name>   1012585_01</name><description>2011-03-05T11:04
+single-baseline (HoA=-41m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.708542,9.960947,0 
+106.997009,10.013906,0 
+106.962379,10.200093,0 
+106.673737,10.147197,0 
+106.708542,9.960947,0
+106.708542,9.960947,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1021607_01</name><description>2011-07-26T11:04
+single-baseline (HoA=-50m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.096802,9.188511,0 
+106.401001,9.245354,0 
+106.339806,9.570302,0 
+106.035324,9.513552,0 
+106.096802,9.188511,0
+106.096802,9.188511,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1021607_02</name><description>2011-07-26T11:05
+single-baseline (HoA=-50m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.047241,9.450506,0 
+106.351669,9.507275,0 
+106.256729,10.011747,0 
+105.951836,9.955123,0 
+106.047241,9.450506,0
+106.047241,9.450506,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1021607_03</name><description>2011-07-26T11:05
+multi-baseline (HoA=-50m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.963753,9.892047,0 
+106.268585,9.948690,0 
+106.173706,10.453155,0 
+105.868393,10.396654,0 
+105.963753,9.892047,0
+105.963753,9.892047,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024219_01</name><description>2011-04-18T11:04
+single-baseline (HoA=-47m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.539833,9.472398,0 
+106.842529,9.528419,0 
+106.807411,9.716331,0 
+106.504539,9.660370,0 
+106.539833,9.472398,0
+106.539833,9.472398,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024219_02</name><description>2011-04-18T11:04
+single-baseline (HoA=-47m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.527168,9.539854,0 
+106.829926,9.595854,0 
+106.735741,10.100050,0 
+106.432518,10.044213,0 
+106.527168,9.539854,0
+106.527168,9.539854,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024219_03</name><description>2011-04-18T11:05
+multi-baseline (HoA=-47m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.444336,9.981192,0 
+106.747505,10.037047,0 
+106.653427,10.541238,0 
+106.349762,10.485544,0 
+106.444336,9.981192,0
+106.444336,9.981192,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024233_01</name><description>2011-05-21T11:04
+single-baseline (HoA=-46m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.331963,9.362460,0 
+106.622978,9.416556,0 
+106.585594,9.615877,0 
+106.294403,9.561840,0 
+106.331963,9.362460,0
+106.331963,9.362460,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024233_02</name><description>2011-05-21T11:04
+multi-baseline (HoA=-46m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.306328,9.498812,0 
+106.597466,9.552868,0 
+106.502914,10.057189,0 
+106.211334,10.003281,0 
+106.306328,9.498812,0
+106.306328,9.498812,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024233_03</name><description>2011-05-21T11:05
+multi-baseline (HoA=-46m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.223198,9.940243,0 
+106.514717,9.994170,0 
+106.420258,10.498484,0 
+106.128265,10.444703,0 
+106.223198,9.940243,0
+106.223198,9.940243,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1025056_01</name><description>2011-08-17T11:04
+single-baseline (HoA=48m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.844025,9.149261,0 
+106.152534,9.207129,0 
+106.092682,9.523776,0 
+105.783890,9.465993,0 
+105.844025,9.149261,0
+105.844025,9.149261,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1025056_02</name><description>2011-08-17T11:05
+multi-baseline (HoA=47m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.795860,9.402935,0 
+106.104591,9.460735,0 
+106.009262,9.965303,0 
+105.700066,9.907637,0 
+105.795860,9.402935,0
+105.795860,9.402935,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1025056_03</name><description>2011-08-17T11:05
+multi-baseline (HoA=47m)</description>
+<styleUrl>#msn_red-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.712036,9.844555,0 
+106.021172,9.902238,0 
+105.925888,10.406796,0 
+105.616264,10.349245,0 
+105.712036,9.844555,0
+105.712036,9.844555,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+</Document>
+<Document><name>Second acquisition</name>
+<StyleMap id="msn_blue-polyline">
+<Pair><key>normal</key><styleUrl>#sn_blue-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_blue-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_blue-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ffff7f24</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_blue-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ffff7f24</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<StyleMap id="msn_gray-polyline">
+<Pair><key>normal</key><styleUrl>#sn_gray-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_gray-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_gray-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_gray-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Placemark><name>   1072099_01</name><description>2012-05-29T11:05
+multi-baseline (HoA=33m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.616386,9.686959,0 
+106.891518,9.737717,0 
+106.821136,10.114912,0 
+106.545677,10.064268,0 
+106.616386,9.686959,0
+106.616386,9.686959,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1082718_01</name><description>2012-08-03T11:05
+multi-baseline (HoA=-32m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.189911,9.281493,0 
+106.483269,9.336178,0 
+106.435905,9.588135,0 
+106.142326,9.533522,0 
+106.189911,9.281493,0
+106.189911,9.281493,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1082718_02</name><description>2012-08-03T11:05
+multi-baseline (HoA=-32m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.154228,9.470462,0 
+106.447754,9.525093,0 
+106.352974,10.029521,0 
+106.059006,9.975033,0 
+106.154228,9.470462,0
+106.154228,9.470462,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1082718_03</name><description>2012-08-03T11:05
+multi-baseline (HoA=-32m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.070900,9.911967,0 
+106.364807,9.966474,0 
+106.270103,10.470894,0 
+105.975723,10.416529,0 
+106.070900,9.911967,0
+106.070900,9.911967,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1083855_01</name><description>2012-09-05T11:05
+multi-baseline (HoA=31m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.956200,9.177828,0 
+106.251831,9.233190,0 
+106.193520,9.542080,0 
+105.897629,9.486799,0 
+105.956200,9.177828,0
+105.956200,9.177828,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1083855_02</name><description>2012-09-05T11:05
+multi-baseline (HoA=31m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.909576,9.423741,0 
+106.205414,9.479038,0 
+106.110222,9.983547,0 
+105.813934,9.928383,0 
+105.909576,9.423741,0
+105.909576,9.423741,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1083855_03</name><description>2012-09-05T11:05
+multi-baseline (HoA=31m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.825874,9.865325,0 
+106.122108,9.920506,0 
+106.026970,10.425006,0 
+105.730270,10.369955,0 
+105.825874,9.865325,0
+105.825874,9.865325,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1084168_01</name><description>2012-07-12T11:05
+multi-baseline (HoA=33m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.423775,9.390162,0 
+106.710526,9.443392,0 
+106.675247,9.631592,0 
+106.388336,9.578419,0 
+106.423775,9.390162,0
+106.423775,9.390162,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1084168_02</name><description>2012-07-12T11:05
+multi-baseline (HoA=33m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.400200,9.515403,0 
+106.687057,9.568595,0 
+106.592598,10.072843,0 
+106.305298,10.019799,0 
+106.400200,9.515403,0
+106.400200,9.515403,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1084168_03</name><description>2012-07-12T11:05
+multi-baseline (HoA=33m)</description>
+<styleUrl>#msn_blue-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.317146,9.956771,0 
+106.604393,10.009832,0 
+106.510025,10.514072,0 
+106.222313,10.461159,0 
+106.317146,9.956771,0
+106.317146,9.956771,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+</Document>
+<Document><name>Additional acquisition</name>
+<StyleMap id="msn_green-polyline">
+<Pair><key>normal</key><styleUrl>#sn_green-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_green-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_green-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff00ee00</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_green-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff00ee00</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<StyleMap id="msn_gray-polyline">
+<Pair><key>normal</key><styleUrl>#sn_gray-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_gray-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_gray-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_gray-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff909090</color><width>2</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Placemark><name>   1024217_01</name><description>2011-08-06T11:05
+single-baseline (HoA=-63m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.709488,9.963310,0 
+106.997528,10.016188,0 
+106.962723,10.203320,0 
+106.674507,10.150503,0 
+106.709488,9.963310,0
+106.709488,9.963310,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024218_01</name><description>2011-09-08T11:05
+single-baseline (HoA=-61m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.539268,9.478497,0 
+106.841927,9.534517,0 
+106.806847,9.722193,0 
+106.504013,9.666234,0 
+106.539268,9.478497,0
+106.539268,9.478497,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024218_02</name><description>2011-09-08T11:05
+single-baseline (HoA=-61m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.527763,9.539743,0 
+106.830482,9.595744,0 
+106.736290,10.099932,0 
+106.433098,10.044096,0 
+106.527763,9.539743,0
+106.527763,9.539743,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1024218_03</name><description>2011-09-08T11:05
+multi-baseline (HoA=-61m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.444923,9.981074,0 
+106.748047,10.036931,0 
+106.653961,10.541114,0 
+106.350334,10.485419,0 
+106.444923,9.981074,0
+106.444923,9.981074,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1059640_01</name><description>2012-01-18T11:04
+single-baseline (HoA=118m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.314438,9.373464,0 
+106.620590,9.430380,0 
+106.585426,9.617752,0 
+106.279106,9.560894,0 
+106.314438,9.373464,0
+106.314438,9.373464,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1059640_02</name><description>2012-01-18T11:04
+multi-baseline (HoA=117m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.291351,9.495925,0 
+106.597618,9.552803,0 
+106.503029,10.057140,0 
+106.196289,10.000417,0 
+106.291351,9.495925,0
+106.291351,9.495925,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+<Placemark><name>   1059640_03</name><description>2012-01-18T11:05
+multi-baseline (HoA=116m)</description>
+<styleUrl>#msn_green-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+106.208160,9.937382,0 
+106.514832,9.994124,0 
+106.420334,10.498454,0 
+106.113159,10.441865,0 
+106.208160,9.937382,0
+106.208160,9.937382,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+</Document>
+<Document><name>Outline of tile</name>
+<StyleMap id="msn_black-polyline">
+<Pair><key>normal</key><styleUrl>#sn_black-polyline</styleUrl></Pair>
+<Pair><key>highlight</key><styleUrl>#sh_black-polyline</styleUrl></Pair>
+</StyleMap>
+<Style id="sn_black-polyline">
+<IconStyle><scale>1.1</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff000000</color><width>3</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Style id="sh_black-polyline">
+<IconStyle><scale>1.3</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/></IconStyle>
+<LineStyle><color>ff000000</color><width>3</width></LineStyle>
+<PolyStyle><fill>0</fill></PolyStyle>
+</Style>
+<Placemark><name>TDM1_DEM__30_N09E106</name><styleUrl>#msn_black-polyline</styleUrl>
+<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+<coordinates>
+105.999583,8.999583,0
+107.000417,8.999583,0
+107.000417,10.000417,0
+105.999583,10.000417,0
+105.999583,8.999583,0
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+</Placemark>
+</Document>
+</Folder>
+</kml>
